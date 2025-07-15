@@ -16,20 +16,13 @@ document.getElementById("searchForm").addEventListener("submit", async (e) => {
       body: JSON.stringify({ query })
     });
 
-    const data = await response.json();
-    resultsDiv.innerHTML = "";
+    // ✅ Use .text() because your scenario returns plain text
+    const text = await response.text();
 
-    if (data.results && data.results.length > 0) {
-      data.results.forEach(result => {
-        const item = document.createElement("div");
-        item.className = "result";
-        item.innerHTML = `
-          <h3><a href="${result.link}" target="_blank" rel="noopener">${result.title}</a></h3>
-          <p>${result.summary}</p>
-        `;
-        resultsDiv.appendChild(item);
-      });
-    } else {
+    // ✅ Show the plain text nicely with line breaks preserved
+    resultsDiv.innerHTML = `<pre>${text}</pre>`;
+
+    if (!text.trim()) {
       resultsDiv.innerHTML = "<p>❌ No results found. Try another query.</p>";
     }
   } catch (error) {
@@ -38,7 +31,7 @@ document.getElementById("searchForm").addEventListener("submit", async (e) => {
   }
 });
 
-// Light/Dark mode toggle
+// ✅ Light/Dark mode toggle remains the same
 const toggle = document.getElementById("modeToggle");
 const label = document.getElementById("modeLabel");
 
