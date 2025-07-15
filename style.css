@@ -1,0 +1,139 @@
+/* ===== Base Styles ===== */
+:root {
+  --bg-color: #f5f5f5;
+  --text-color: #222;
+  --primary-color: #4f46e5;
+  --result-bg: #fff;
+  --button-bg: #4f46e5;
+  --button-text: #fff;
+}
+
+body.dark {
+  --bg-color: #121212;
+  --text-color: #f5f5f5;
+  --result-bg: #1e1e1e;
+  --button-bg: #4f46e5;
+  --button-text: #fff;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: var(--bg-color);
+  color: var(--text-color);
+  transition: background 0.3s, color 0.3s;
+}
+
+.container {
+  max-width: 700px;
+  margin: 60px auto;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+#searchForm {
+  display: flex;
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+#queryInput {
+  flex: 1;
+  padding: 15px 20px;
+  border: 2px solid var(--primary-color);
+  border-radius: 6px 0 0 6px;
+  font-size: 16px;
+  outline: none;
+}
+
+#searchForm button {
+  padding: 0 30px;
+  background: var(--button-bg);
+  color: var(--button-text);
+  border: none;
+  border-radius: 0 6px 6px 0;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+#searchForm button:hover {
+  background: #3730a3; /* darker shade of primary */
+}
+
+#results {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.result {
+  background: var(--result-bg);
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: background 0.3s;
+}
+
+.result h3 {
+  margin: 0 0 10px;
+}
+
+.result a {
+  text-decoration: none;
+  color: var(--primary-color);
+}
+
+.result p {
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* Light/Dark Mode Toggle Switch */
+.mode-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 26px;
+  margin-right: 10px;
+}
+
+.switch input { display: none; }
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 26px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px; width: 20px;
+  left: 3px; bottom: 3px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: var(--primary-color);
+}
+
+input:checked + .slider:before {
+  transform: translateX(24px);
+}
